@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Front.default_view"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Front"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             mc:Ignorable="d"
+             Height="500" Width="600" Background="#E8F5E9">
+    <UserControl.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#c4bcc4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="123"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Background" Value="#f0f0f0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundValidateButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="123"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Background" Value="#bdffc2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#FFDCECEC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titre de la fenêtre -->
+        <TextBlock x:Name="Welcome" Text="" FontSize="30" FontWeight="Bold" FontFamily="Segoe UI" HorizontalAlignment="Center" Margin="0,20,0,10"/>
+        <TextBlock Name="Easysave" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+
+        <!-- Liste des sauvegardes -->
+        <ListView Name="backupListView" Margin="20,65,20,0" VerticalAlignment="Top" Grid.RowSpan="2">
+            <!-- Colonnes de la liste -->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Progression" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar Value="{Binding Progress}" Maximum="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="State" Width="150" DisplayMemberBinding="{Binding State}"/>
+                    <GridViewColumn Header="Actions" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Stop" Command="{Binding StopCommand}" Style="{StaticResource {x:Type Button}}" Margin="0,0,5,0"/>
+                                    <Button Content="Restart" Command="{Binding ResumeCommand}" Style="{StaticResource {x:Type Button}}" Margin="0,0,5,0"/>
+                                    <Button Content="Pause" Command="{Binding PauseCommand}" Style="{StaticResource {x:Type Button}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,279,45,1" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.642"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Height="33" Width="113" Click="Button_Click" Style="{StaticResource RoundValidateButtonStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="images/ajout.png" Width="31" Height="19" />
+                    <TextBlock Text="New task" Grid.Column="1" HorizontalAlignment="Right" Width="48"/>
+                </Grid>
+            </Button>
+
+
+        </StackPanel>
+        <!-- Nouveau bouton "Lancer Tout" -->
+        <Button Height="33" Width="112" Click="LancerToutButton_Click" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,336,0,0" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Lancer Tout" Grid.Column="1" HorizontalAlignment="Left" Width="61"/>
+            </Grid>
+        </Button>
+        <!-- Bouton Paramètre -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,278,0,2" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.642"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button  Height="32" Width="107" Click="ParametreButton_Click" Style="{StaticResource RoundButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="images/params.jpg" Stretch="Fill" Width="31" Height="19"/>
+                        <TextBlock Text="Parameter" Grid.Column="1" Margin="5,0,0,0"/>
+                    </Grid>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
