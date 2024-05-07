@@ -1,0 +1,25 @@
+MANUEL D’UTILISATION DE EASYSAVE
+Introduction
+Easysave est une application de sauvegarde facile à utiliser. Toutes personnes désirant faire des sauvegardes facilement et rapidement, easysave répond à cette demande
+Installation
+Télécharger le .exe puis lancer l’installation
+Première Utilisation 
+Apres l’installation lancer simplement l’application, cliquez sur le buton nouvelle sauvegarde la page effectuer une nouvelle sauvegarde s’ouvre, ensuite renseigner les données dans le formulaire de sauvegarde. L’option pour crypter la sauvegarde disponible si besoin puis valider la sauvegarde.
+-Pour avoir la liste des sauvegardes, retourner sur la page d’accueil Easysave.
+-Pour les différents réglages du langage et des extensions du fichier log, un buton paramètre présent sur la page suivi de sauvegarde qui est l’entrée de l’application.
+Interface utilisateur 
+Trois pages principales dans l’application ;
+-Page Suivi de sauvegarde : Boutons présent ; 
+     -Paramètre : accéder à la page des paramètres
+     -Nouvelle sauvegarde : accéder à la page effectuer des sauvegardes
+-Page Nouvelle Sauvegarde : Butons présent ;
+      -Bouton pour valider la sauvegarde
+      -Bouton pour annuler 
+      -Bouton retour à la page d’accueil
+-Page paramètre :
+       -Bouton valider 
+       -Annuler
+Configuration des Sauvegardes :
+Types de sauvegarde disponible : Différentielle et complète
+Choix des fichier et dossier à sauvegarder
+Paramètre de langue et chiffrement
